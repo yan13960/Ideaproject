@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理系统</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">
+            后台管理系统
+        </div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <!--                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">-->
+                    操作
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="/login/adminLogin.html" id="loginOut">重新登录</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree" lay-filter="left_nav">
+                <div id="nav"></div>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <div class="layouts layout-vertical border-box">
+            <div class="layout-static tabs">
+                <div class="tabs-item"><i class="layui-icon layui-icon-prev"></i></div>
+                <div class="items" id="menusContainer"></div>
+                <div class="tabs-item"><i class="layui-icon layui-icon-next"></i></div>
+                <div class="tabs-item"><i class="fas fa-cog"></i></div>
+            </div>
+            <div class="layout-auto" id="iframeContainer">
+            </div>
+        </div>
+    </div>
+    <div class="layui-footer">&copy; copyright 2019 后台管理系统 All rights reserved <a href="http://www.miitbeian.gov.cn">湘ICP备xxx号-x</a><span style="float: right">V1.0</span></div>
+</div>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/layui/layui.all.js"></script>
+<script>
+    (function () {
+
+        $.ajax({
+            url : '/menu/list',
+            dataType : 'json',
+            success:function (data) {
+                initMenus(data.data);
+            }
+        })
+
+        jumpUrl(encodeURIComponent(JSON.stringify({
+            id : '2e8b84d1b683483e895',
+            uri: 'index.html',
+            icon: 'layui-icon layui-icon-home',
+            name: '首页',
+            close : false
+        })));
+    })();
+
+    function initMenus(menus) {
+        //JavaScript代码区域
+        var element = layui.element;
+        var template = '';
+        if (Array.isArray(menus)) {
+            for (var index = 0; index < menus.length; index++) {
+                var menu = menus[index];
+                if (Array.isArray(menu.children) && menu.children.length > 0) {
+                    template += '<li class="layui-nav-item"><a href="javascript:;"><span class="nav-icon"><i class="layui-icon ' + menu.icon + '" style="margin-right: 5px"></i></span><span class="nav-title">' + menu.name + '</span></a><dl class="layui-nav-child">';
+                    for (var childIndex = 0; childIndex < menu.children.length; childIndex++) {
+                        var childMenu = menu.children[childIndex];
+                        template += '<dd><a href="javascript:jumpUrl(\'' + encodeURIComponent(JSON.stringify(childMenu)) + '\')"><i class="layui-icon ' + childMenu.icon + '" style="margin-right: 5px"></i><span class="nav-title">' + childMenu.name + '</span></a></dd>';
+                    }
+                    template += '</dl></li>'
+                } else {
+                    template += '<li class="layui-nav-item"><a href="javascript:jumpUrl(\'' + encodeURIComponent(JSON.stringify(menu)) + '\')"><span class="nav-icon"><i class="layui-icon ' + menu.icon + '" style="margin-right: 5px"></i></span><span class="nav-title">' + menu.name + '</span></a></li>';
+                }
+            }
+        }
+        $('#nav').replaceWith(template);
+        element.render('nav');
+    }
+
+    function jumpUrl(encodeMenu) {
+
+        function value(val) {
+            return typeof val === 'undefined' || val === null ? '' : val;
+        }
+
+        function def(val, val2) {
+            return typeof val === 'undefined' || val === null ? val2 : val;
+        }
+
+        var menu = JSON.parse(decodeURIComponent(encodeMenu));
+        var $menusContainer = $('#menusContainer');
+        var $iframesContainer = $('#iframeContainer');
+        var find = $menusContainer.find('[menu-id="' + menu.id + '"]');
+        var items = $menusContainer.find('.tabs-item');
+        if (find.length > 0) {
+            // 如果存在则直接选择已有的
+            items.removeClass('active');
+            find.addClass('active');
+            $iframesContainer.find('iframe').addClass('hidden');
+            $iframesContainer.find('[src="' + def(menu.uri, '') + '"]').removeClass('hidden');
+        } else {
+            items.removeClass('active');
+            var template = '<div class="tabs-item active" menu-id="' + menu.id + '"><i class="layui-icon '+menu.icon+'"></i><span class="tabs-item-title">' + value(menu.name) + '</span>'+ (menu.close === false ? '' : '<span class="tabs-close"><i class="layui-icon layui-icon-close"></i></span>') +'</div>';
+            $(template).appendTo($menusContainer).click(function (e) {
+                jumpUrl(encodeMenu);
+            }).find('.tabs-close').click(function (e) {
+                var parent = $(this).parent();
+                e.stopPropagation();
+                var index = parent.index(), items = $menusContainer.find('.tabs-item');
+                if ($(parent).hasClass('active')) {
+                    if (index < items.length - 1) {
+                        $(items[index + 1]).trigger('click');
+                    } else if (index > 0) {
+                        $(items[index - 1]).trigger('click');
+                    }
+                }
+                parent.remove();
+                $iframesContainer.find('[src="' + menu.uri + '"]').remove();
+            });
+            $iframesContainer.find('iframe').addClass('hidden');
+            $iframesContainer.append('<iframe src="' + menu.uri + '"></iframe>');
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,39 @@
+server:
+  port: 80
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:3000/eureka/
+  instance:
+    instance-id: gateway-0
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+spring:
+  application:
+    name: service-gateway
+  redis:
+    host: 192.168.223.133
+    port: 6379
+    database: 0
+    jedis:
+      pool:
+        max-active: 1000
+        max-idle: 100
+        max-wait: -1ms
+        min-idle: 10
+    timeout: 3000ms
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: product
+          uri: lb://SERVICE-PRODUCT
+          predicates:
+            - Path=/product/**
+        - id: admin-
+          uri: lb://SERVICE-ADMIN
+          predicates:
+            - Path=/admin/**,/menu/**,/category/**

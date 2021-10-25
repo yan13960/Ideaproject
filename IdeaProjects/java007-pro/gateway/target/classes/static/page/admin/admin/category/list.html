@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/js/layui/css/layui.css">
+    <script src="/js/layui/layui.all.js"></script>
+    <script src="/js/treeTable/treeTable.js"></script>
+</head>
+<body>
+<script type="text/html" id="categoryBar">
+    <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="add"><i class="layui-icon layui-icon-add-1"></i>新增</a>
+</script>
+<script type="text/html" id="categoryLineBar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<table class="layui-hide" id="categoryTable" lay-filter="categoryTable">
+
+</table>
+
+<!-- add content -->
+<div class="layui-row" id="addDiv" style="display: none">
+    <div class="layui-col-md12">
+        <form class="layui-form" action="" lay-filter="addForm" style="margin-top: 20px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">类目名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="categoryName" id="categoryName" class="layui-input"
+                           lay-verify="required" placeholder="请输入类目名称">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">级别</label>
+                <div class="layui-input-inline">
+                    <select name="level" id="level" lay-filter="level">
+                        <option value="1">一级类目</option>
+                        <option value="2" selected="">二级类目</option>
+                    </select>
+                </div>
+            </div>
+
+            <blockquote class="layui-elem-quote layui-text">
+                Tips：建议像素为750X246
+            </blockquote>
+            <div class="layui-form-item">
+                <label class="layui-form-label">类目图片</label>
+                <div class="layui-upload-drag" id="picUrlUpload">
+                    <i class="layui-icon"></i>
+                    <p>点击上传或者拖拽图片上传</p>
+                </div>
+            </div>
+            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                预览图：
+                <div class="layui-upload-list" id="picUrlPreview"></div>
+            </blockquote>
+
+        </form>
+    </div>
+</div>
+</body>
+<script src="js/list.js"></script>
+</html>

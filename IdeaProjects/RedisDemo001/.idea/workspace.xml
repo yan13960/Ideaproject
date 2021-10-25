@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d84fba4c-9a9d-4e3c-a7f6-68bcedd6bcd9" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\java\apache-maven-3.6.3\RepositoryIdea" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/apache-maven-3.6.3" />
+        <option name="userSettingsFile" value="D:\java\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1wAJzCLEexJrNhJaTj0FtqMMug3" />
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mysecurity" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\java\IdeaProjects\RedisDemo001\web\WEB-INF\lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.Test003.testJedisPool2">
+    <configuration name="JedisPoolUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.javacto.utils.JedisPoolUtils" />
+      <module name="RedisDemo001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javacto.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test003" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.javacto.redis.Test003" />
+      <module name="RedisDemo001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javacto.redis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test002.testSortedset" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RedisDemo001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javacto.redis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.javacto.redis" />
+      <option name="MAIN_CLASS_NAME" value="com.javacto.redis.Test002" />
+      <option name="METHOD_NAME" value="testSortedset" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test003.testJedisPool" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RedisDemo001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javacto.redis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.javacto.redis" />
+      <option name="MAIN_CLASS_NAME" value="com.javacto.redis.Test003" />
+      <option name="METHOD_NAME" value="testJedisPool" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test003.testJedisPool2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RedisDemo001" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.javacto.redis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.javacto.redis" />
+      <option name="MAIN_CLASS_NAME" value="com.javacto.redis.Test003" />
+      <option name="METHOD_NAME" value="testJedisPool2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 8.5.5" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.5" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment>
+        <artifact name="RedisDemo001:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/RedisDemo001_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="RedisDemo001:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Test003.testJedisPool2" />
+        <item itemvalue="Application.JedisPoolUtils" />
+        <item itemvalue="JUnit.Test003.testJedisPool" />
+        <item itemvalue="Application.Test003" />
+        <item itemvalue="JUnit.Test002.testSortedset" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d84fba4c-9a9d-4e3c-a7f6-68bcedd6bcd9" name="Default Changelist" comment="" />
+      <created>1627895719568</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627895719568</updated>
+      <workItem from="1627895722097" duration="2538000" />
+      <workItem from="1627995641930" duration="1381000" />
+      <workItem from="1628050497608" duration="683000" />
+      <workItem from="1628081974270" duration="6391000" />
+      <workItem from="1628174090038" duration="596000" />
+      <workItem from="1628227820578" duration="5082000" />
+      <workItem from="1628255060947" duration="3314000" />
+      <workItem from="1628306930560" duration="1387000" />
+      <workItem from="1634629029405" duration="4840000" />
+      <workItem from="1634725574906" duration="42000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1112" y="275" key="FileChooserDialogImpl" timestamp="1634725602698">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1112" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1634725602698" />
+    <state width="1038" height="279" key="GridCell.Tab.0.bottom" timestamp="1634725617905">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1038" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1634725617905" />
+    <state width="1038" height="279" key="GridCell.Tab.0.center" timestamp="1634725617905">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1038" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1634725617905" />
+    <state width="1038" height="279" key="GridCell.Tab.0.left" timestamp="1634725617905">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1038" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1634725617905" />
+    <state width="1038" height="279" key="GridCell.Tab.0.right" timestamp="1634725617905">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1038" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1634725617905" />
+    <state x="876" y="350" key="com.intellij.ide.util.TipDialog" timestamp="1634725574981">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="876" y="350" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634725574981" />
+    <state x="669" y="130" key="new project wizard" timestamp="1628263556701">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="669" y="130" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1628263556701" />
+    <state x="1067" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1628229091004">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1067" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1628229091004" />
+  </component>
+</project>

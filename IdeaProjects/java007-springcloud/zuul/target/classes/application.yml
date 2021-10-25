@@ -1,0 +1,24 @@
+server:
+  port: 4001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka/,http://eureka3001.com:3001/eureka,http://eureka3002.com:3002/eureka #eureka服务端地址
+spring:
+  application:
+    name: zuul #此实例注册到eureka服务端的name2
+zuul:
+  ignored-services: "*"
+  host:
+    connectTimeoutMillis: 15000
+    connectionRequestTimeoutMillis: 50000
+  routes:
+    order:
+      serviceId: server-order
+      path: /order/**
+    user:
+      serviceId: server-user
+      path: /user/**
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

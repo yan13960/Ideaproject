@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!-- 定义参数常量 -->
+    <!-- 日志级别 TRACE<DEBUG<INFO<WARN<ERROR -->
+    <!-- logger.trace("msg") logger.debug... -->
+    <property name="log.level" value="debug" />
+    <property name="log.maxHistory" value="30" />
+    <property name="log.filePath" value="D:/log" />
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level%logger{50} - %msg%n" />
+
+    <!-- 控制台输出设置 -->
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+
+
+    <!-- <root> 是必选节点，用来指定最基础的日志输出级别，只有一个level属性 -->
+    <root level="info">
+        <appender-ref ref="consoleAppender"/>
+    </root>
+
+</configuration>

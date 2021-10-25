@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+hello user 我是
+<p th:utext="${#lists.contains(user,2)}"></p>
+
+<p th:text='${#dates.format(user2,"yyyy年MM月dd日")}'></p>
+<div th:each="num : ${user}">
+    <p th th:if="${num>2}" th:text="${num}"/>
+    <a th:href="@{/user2/1}"></a>
+   <!-- <p th:utext="${#request.getAttribute('aaa')}"></p>
+    <p th:utext="${#session.getAttribute('user')}"></p>-->
+</div>
+</body>
+</html>

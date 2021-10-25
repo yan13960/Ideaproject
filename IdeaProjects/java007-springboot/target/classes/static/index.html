@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="js/layui/css/layui.css" media="all">
+<body>
+
+<table id="demo" lay-filter="test"></table>
+
+</body>
+<script src="js/layui/layui.all.js"></script>
+<script>
+    layui.use('table',function () {
+
+        var table = layui.table;
+
+        table.render({
+            elem: '#demo',
+            url: '/user/list',
+            where:{
+                id: "xxxxx213412321"
+            },
+            page: false,
+            cols: [[
+                {field:'id', title: 'ID'},
+                {field:'name', title: '用户名'}
+            ]]
+        });
+
+    });
+</script>
+</html>

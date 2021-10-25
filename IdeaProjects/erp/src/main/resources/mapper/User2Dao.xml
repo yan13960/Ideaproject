@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itnanls.dao.User2Dao">
+
+    <resultMap type="cn.itnanls.entity.User2" id="User2Map">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="birthday" column="birthday" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="User2Map">
+        select
+          id, username, password, birthday
+        from user2
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="User2Map">
+        select
+        id, username, password, birthday
+        from user2
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="birthday != null">
+                and birthday = #{birthday}
+            </if>
+        </where>
+
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from user2
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="birthday != null">
+                and birthday = #{birthday}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into user2(username, password, birthday)
+        values (#{username}, #{password}, #{birthday})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user2(username, password, birthday)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.username}, #{entity.password}, #{entity.birthday})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into user2(username, password, birthday)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.username}, #{entity.password}, #{entity.birthday})
+        </foreach>
+        on duplicate key update
+        username = values(username),
+        password = values(password),
+        birthday = values(birthday)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update user2
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from user2 where id = #{id}
+    </delete>
+
+</mapper>
+

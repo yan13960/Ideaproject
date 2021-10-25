@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <a th:href="@{/toLogin}" th:if="${#session.getAttribute('user') eq null}">登录</a>
+
+  <a th:href="@{/toUser}" th:if="${#session.getAttribute('permissions')ne null && #lists.contains(#session.getAttribute('permissions'),'user:add')}">添加用户</a>
+  <a th:href="@{/toUser}" th:if="${#session.getAttribute('permissions')ne null && #lists.contains(#session.getAttribute('permissions'),'user:delete')}">删除用户</a>
+  <a th:href="@{/toUser}" th:if="${#session.getAttribute('permissions')ne null && #lists.contains(#session.getAttribute('permissions'),'user:query')}">查看用户</a>
+  <a th:href="@{/toUser}" th:if="${#session.getAttribute('permissions')ne null && #lists.contains(#session.getAttribute('permissions'),'user:update')}">修改用户</a>
+</body>
+</html>

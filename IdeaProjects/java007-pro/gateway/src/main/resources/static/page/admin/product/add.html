@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="/js/layui/css/layui.css">
+<script src="/js/layui/layui.all.js"></script>
+<style>
+    /*layui表格列内容显示完全*/
+    .layui-table-cell {
+        font-size:14px;
+        padding:0 5px;
+        height:auto;
+        overflow:visible;
+        text-overflow:inherit;
+        white-space:normal;
+        word-break: break-all;
+    }
+
+    .layui-form-label.required:before {
+        content: "*";
+        color: #ff4949;
+        margin-right: 4px;
+    }
+
+    .layui-input.radius{
+        border-radius: 5px;
+    }
+
+
+    /*自定义layer插件样式*/
+    body .custom .layui-layer-content {
+        padding: 0px 0px 8px 0px;
+    }
+
+    .custom-tips-title {
+        padding:5px 0px;
+        margin:0px;
+        text-align:center;
+        font-size:15px;
+        background-color:#139ff0;
+        border-radius:5px 5px 0px 0px;
+        box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+        font-weight:bold;
+    }
+
+    .custom-tips-content {
+        padding:5px 28px;
+        color: #0C0C0C;
+        font-size: 13px;
+    }
+
+    .spec-span{
+        background-color: #e8f4ff;
+        border-color: #d1e9ff;
+        color: #1890ff;
+        display: inline-block;
+        height: 32px;
+        padding: 0 10px;
+        line-height: 30px;
+        font-size: 12px;
+        color: #1890ff;
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 4px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        white-space: nowrap;
+    }
+
+    .upload-img-list li{
+        float: left;
+        margin-left: 10px;
+    }
+
+    .upload-img-btn {
+        cursor: pointer;
+        width: 178px;
+        height: 178px;
+        border: 1px dashed #8c939d;
+        text-align: center;
+        line-height: 178px;
+        border-radius: 10px;
+    }
+
+    .upload-img-view{
+        position: relative;
+        padding: 0;
+        width: 180px;
+        height: 180px;
+        float: left;
+    }
+
+    .upload-img-view:not(:first-child) {
+        margin-left:10px;
+    }
+
+    .upload-img-view img{
+        width: 180px;
+        height: 180px;
+        border-radius: 10px;
+    }
+
+    .upload-img-view i{
+        cursor: pointer;
+        font-size: 30px;
+        color: #fff;
+    }
+
+    .upload-img-view-mask{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 180px;
+        width: 180px;
+        background: rgba(0,0,0,0.5);
+        color: #f5f1e5;
+        line-height: 180px;
+        text-align: center;
+        border-radius: 10px;
+        display: none;
+    }
+</style>
+<body style="background: #F2F2F2">
+
+<!-- 上架表单 -->
+<form class="layui-form" lay-filter="add_form" action="">
+    <!-- 商品介绍 -->
+    <div class="layui-col-md12" style="padding: 20px">
+        <div class="layui-card ">
+            <div class="layui-card-header" style="font-weight: bold">
+                商品介绍
+            </div>
+            <!-- 商品基本属性 -->
+            <div class="layui-card-body layui-row">
+                <!-- 商品名称 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label required">商品名称</label>
+                    <div class="layui-input-block">
+                        <input name="name" id="name" type="text" class="layui-input radius"
+                               placeholder="请输入商品名称" lay-verify="required" autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- 商品简介 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品简介</label>
+                    <div class="layui-input-block">
+                        <input name="brief" id="brief" type="text" class="layui-input radius"
+                               placeholder="请输入商品简介" lay-verify="required" autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- 商品单位 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品单位</label>
+                    <div class="layui-input-inline">
+                        <input name="unit" id="unit" type="text"
+                               placeholder="个/件/盒"
+                               class="layui-input radius" lay-verify="required" autocomplete="off">
+                    </div>
+                </div>
+
+                <!-- 市场价 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">市场价</label>
+                    <div class="layui-input-inline">
+                        <input name="counterPrice" id="counterPrice" type="text" placeholder="0.00￥"
+                               class="layui-input radius" lay-verify="required|number" autocomplete="off"
+                               onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">
+                        <span id="counter_price_tips"><i class="layui-icon">&#xe60b;</i></span>
+                    </div>
+                </div>
+
+                <!-- 是否上架 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否上架</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sale" value="1" title="上架" checked="">
+                        <input type="radio" name="sale" value="0" title="下架">
+                    </div>
+                </div>
+
+                <!-- 商品首页图 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品首页图</label>
+                    <div class="layui-input-block">
+                        <ul class="upload-img-list">
+                            <li id="picPreview">
+
+                            </li>
+                            <li>
+                                <div class="upload-img-btn" id="picPreviewBtn"
+                                     onmouseover="this.style.borderColor='#409eff'"
+                                     onmouseout="this.style.borderColor='#8c939d'">
+                                    <i class="layui-icon" style="font-size: 30px;color: #8c939d">&#xe654;</i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 商品宣传图 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品宣传图</label>
+                    <div class="layui-input-block">
+                        <ul class="upload-img-list">
+                            <li id="galleryPreview">
+
+                            </li>
+                            <li>
+                                <div class="upload-img-btn" id="galleryPreviewBtn"
+                                     onmouseover="this.style.borderColor='#409eff'"
+                                     onmouseout="this.style.borderColor='#8c939d'">
+                                    <i class="layui-icon" style="font-size: 30px;color: #8c939d">&#xe654;</i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 所属分类 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">所属分类</label>
+                    <div class="layui-input-inlin">
+                        <div class="layui-input-inline">
+                            <select name="category1" id="category1" lay-filter="category1" lay-verify="required" lay-search="">
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="category2" id="category2" lay-filter="category2" lay-verify="required" lay-search="">
+                                <option value="">请选择子类目</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 商品详情页 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品详情页</label>
+                    <div class="layui-input-block">
+                        <textarea name="productDetail" id="productDetail"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 商品基本属性 end -->
+        </div>
+    </div>
+    <!-- 商品介绍 end -->
+
+    <!-- 商品规格 -->
+    <script type="text/html" id="specBar">
+        <button type='button' class='layui-btn layui-btn-danger layui-btn-sm' lay-event="del">删除</button>
+    </script>
+    <div class="layui-col-md12" style="padding: 0px 20px 20px 20px">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-weight: bold">
+                商品规格
+            </div>
+            <div class="layui-card-body layui-row">
+                <div>
+                    <input type="radio" lay-filter="spec_sup" name="spec_sup" value="0" title="单一规格支持" checked="">
+                    <input type="radio" lay-filter="spec_sup" name="spec_sup" value="1" title="多规格支持">
+                    <button type="button" style="margin-top: 3px;display: none" id="spec_sup_add"
+                            class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon">&#xe654;</i>添加
+                    </button>
+                </div>
+                <table class="layui-table" id="spec_table" lay-filter="spec_table">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 商品规格 end -->
+
+    <!-- 商品货品管理 -->
+    <script type="text/html" id="productBar">
+        <button type='button' class='layui-btn layui-btn-normal layui-btn-sm' lay-event="set">设置</button>
+    </script>
+    <div class="layui-col-md12" style="padding: 0px 20px 20px 20px">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-weight: bold">
+                商品货品管理
+            </div>
+            <div class="layui-card-body layui-row">
+                <table class="layui-table" id="goods_table" lay-filter="goods_table">
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 商品货品管理 end -->
+
+    <!-- 商品参数 -->
+    <script type="text/html" id="attrBar">
+        <button type='button' class='layui-btn layui-btn-danger layui-btn-sm' lay-event="del">删除</button>
+    </script>
+    <div class="layui-col-md12" style="padding: 0px 20px 20px 20px">
+        <div class="layui-card">
+            <div class="layui-card-header" style="font-weight: bold">
+                商品参数
+            </div>
+            <div class="layui-card-body layui-row">
+                <div>
+                    <button type="button" id="attr_add" class="layui-btn layui-btn-sm layui-btn-primary">
+                        <i class="layui-icon">&#xe654;</i>添加
+                    </button>
+                </div>
+                <table class="layui-table" id="attribute_table" lay-filter="attribute_table">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 商品参数 end -->
+
+    <!-- 提交 -->
+    <div class="layui-col-md12" style="padding: 0px 20px 20px 20px;text-align: center">
+        <button class="layui-btn layui-btn-normal layui-btn-submit" type="submit"
+                lay-submit="" lay-filter="addFormSubmitBtn">上架</button>
+        <button type="button" class="layui-btn layui-btn-primary">取消</button>
+    </div>
+    <!-- 提交 end -->
+</form>
+</body>
+
+<!-- spec弹窗设置参数content -->
+<div class="layui-row" id="specMessage" style="display:none;">
+    <form class="layui-form" style="padding: 20px 50px 20px 20px">
+        <!-- 规格名 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label required">规格名</label>
+            <div class="layui-input-block">
+                <input type="text" name="specName" id="specName" lay-verify="required"
+                       autocomplete="off" placeholder="请输入规格名" class="layui-input radius">
+            </div>
+        </div>
+
+        <!-- 规格值 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label required">规格值</label>
+            <div class="layui-input-block">
+                <input type="text" name="specValue" id="specValue" lay-verify="required"
+                       autocomplete="off" placeholder="请输入规格值" class="layui-input radius">
+            </div>
+        </div>
+
+        <!-- 商品规格图 -->
+        <div class="layui-form-item">
+            <label class="layui-form-label">规格图片</label>
+            <div class="layui-input-block">
+                <ul class="upload-img-list">
+                    <li id="specPreview">
+
+                    </li>
+                    <li>
+                        <div class="upload-img-btn" id="specPreviewBtn"
+                             onmouseover="this.style.borderColor='#409eff'"
+                             onmouseout="this.style.borderColor='#8c939d'">
+                            <i class="layui-icon" style="font-size: 30px;color: #8c939d">&#xe654;</i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="margin-top:40px">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-submit layui-btn-normal" lay-submit="" lay-filter="specSubmit">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- spec弹窗设置参数content end -->
+
+<!-- goods弹窗设置参数content -->
+<div class="layui-row" id="goodsMessage" style="display:none;">
+    <form class="layui-form" style="padding: 20px 50px 20px 20px">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">货品售价</label>
+            <div class="layui-input-block">
+                <input type="text" name="goodsPrice" id="goodsPrice" lay-verify="required|number"
+                       autocomplete="off" placeholder="0.00 ¥" class="layui-input radius"
+                       onkeyup="this.value= this.value.match(/\d+(\.\d{0,2})?/) ? this.value.match(/\d+(\.\d{0,2})?/)[0] : ''">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">库存数量</label>
+            <div class="layui-input-block">
+                <input type="text" name="goodsNum" id="goodsNum" lay-verify="required|number"
+                       autocomplete="off" placeholder="请输入库存数量" class="layui-input radius"
+                       onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="margin-top:40px">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-submit layui-btn-normal" lay-submit="" lay-filter="goodsSubmit">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- goods弹窗设置参数content end -->
+
+<!-- attr弹窗设置参数content -->
+<div class="layui-row" id="attributeMessage" style="display:none;">
+    <form class="layui-form layui-from-pane" style="padding: 20px 50px 20px 20px">
+        <div class="layui-form-item">
+            <label class="layui-form-label required">参数名</label>
+            <div class="layui-input-block">
+                <input type="text" name="attributeName" id="attributeName"
+                       lay-verify="required" autocomplete="off" placeholder="请输入参数名"
+                       class="layui-input radius">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">参数值</label>
+            <div class="layui-input-block">
+                <input type="text" name="attributeValue" id="attributeValue"
+                       lay-verify="required" autocomplete="off" placeholder="请输入参数值"
+                       class="layui-input radius">
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="margin-top:40px">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-submit layui-btn-normal" lay-submit="" lay-filter="attributeSubmit">添加</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- attr弹窗设置参数content end -->
+
+<script src="js/add.js"></script>
+</html>

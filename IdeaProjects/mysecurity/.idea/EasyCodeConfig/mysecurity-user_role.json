@@ -1,0 +1,26 @@
+{
+  "name" : "UserRole",
+  "preName" : null,
+  "comment" : null,
+  "templateGroupName" : null,
+  "fullColumn" : [ {
+    "name" : "uId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  }, {
+    "name" : "rId",
+    "comment" : null,
+    "type" : null,
+    "shortType" : null,
+    "custom" : false,
+    "ext" : { }
+  } ],
+  "pkColumn" : null,
+  "otherColumn" : null,
+  "savePackageName" : "cn.itnanls",
+  "savePath" : "./src/main/java/cn/itnanls",
+  "saveModelName" : "mysecurity"
+}

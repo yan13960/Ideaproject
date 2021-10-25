@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+           version="2.5">
+
+
+    <servlet>
+        <servlet-name>LoginAction</servlet-name>
+        <servlet-class>com.javacto.action.LoginAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginAction</servlet-name>
+        <!--请不要少了/  -->
+        <url-pattern>/login.do</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ErrCodeAction</servlet-name>
+        <servlet-class>com.javacto.action.ErrCodeAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ErrCodeAction</servlet-name>
+        <!--请不要少了/  -->
+        <url-pattern>/errCode.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletInitDestory</servlet-name>
+        <servlet-class>com.javacto.day03.action.ServletInitDestory</servlet-class>
+        <!--数值，不能为0 和负数  数字越小优先级别越高 这个开发通常也不会让我们配置，-->
+       <!-- <load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletInitDestory</servlet-name>
+        <!--请不要少了/  -->
+        <url-pattern>/initDestroy.do</url-pattern>
+    </servlet-mapping>
+
+
+    <!--刚才2不能访问，那我就配置到最外面-->
+    <context-param>
+        <param-name>sbqSbqEncoding</param-name>
+        <param-value>Servlet上下文，这是专业术语</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>InitParamAction</servlet-name>
+        <servlet-class>com.javacto.day03.action.InitParamAction</servlet-class>
+        <!--定义初始化参数-->
+        <init-param>
+            <param-name>sbqSbq</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitParamAction</servlet-name>
+        <!--请不要少了/  -->
+        <url-pattern>/initParamAction.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InitParamAction2</servlet-name>
+        <servlet-class>com.javacto.day03.action.InitParamAction2</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitParamAction2</servlet-name>
+        <!--请不要少了/  -->
+        <url-pattern>/initParamAction2.do</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Test004</servlet-name>
+        <servlet-class>com.javacto.day03.b.Test004</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Test004</servlet-name>
+        <!--请不要少了/  -->
+        <url-pattern>/test004.do</url-pattern>
+    </servlet-mapping>
+</web-app>

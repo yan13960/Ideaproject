@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <base th:href="@{/}">
+</head>
+<body>
+<form>
+    <input name="username">
+    <input type="password" name="password">
+    <input id="btn" type="button" value="提交">
+</form>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script>
+    $("#btn").click(function () {
+        $.post("user",$("form").serialize(),function (data) {
+            if (data.code==200){
+                location.href="/";
+            }
+        })
+    })
+</script>
+</body>
